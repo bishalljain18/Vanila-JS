@@ -24,7 +24,7 @@ export class MenuPage extends HTMLElement {
     render() {
         const menu = app.store.menu;
         console.log('menu', menu)
-        
+        this.root.querySelector("#menu").innerHTML = ""
         if(menu) {
             for(let category of menu) {
                 const liCategory = document.createElement('li');
@@ -34,6 +34,11 @@ export class MenuPage extends HTMLElement {
                 `;
                 this.root.querySelector('#menu').appendChild(liCategory)
                 
+                category.products.forEach(product => {
+                    let item = document.createElement("product-item")
+                    item.dataset.product = JSON.stringify(product)
+                    liCategory.querySelector('ul').appendChild(item)
+                })
             }
         } else {
             this.root.querySelector("#menu").innerHTML = "Loading..."

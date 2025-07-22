@@ -22,21 +22,27 @@ const Router = {
             history.pushState({ route }, '', route)
         }
         let pageElement = null;
+        console.log('=======')
         switch(route) {
             case "/":
+                console.log('herer')
                 pageElement = document.createElement("menu-page");
                 pageElement.textContent = "Menu"
                 break;
             case "/order":
+                console.log('444444444')
+
                 pageElement = document.createElement("order-page");
                 pageElement.textContent = "Your Order"
                 break;
             default:
-                if(route.startsWith("product-")) {
+                console.log('kajdshkjadh')
+                if(route.startsWith("/product-")) {
+                    console.log('-------')
                     pageElement = document.createElement("details-page")
                     pageElement.textContent = "Details"
-                    const paramID = route.subString(route.lastIndexOf("-")+1)
-                    pageElement.dataset.id = paramID
+                    const paramID = route.substring(route.lastIndexOf("-")+1)
+                    pageElement.dataset.productId = paramID
                 }
         }
         if(pageElement) {
